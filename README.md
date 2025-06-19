@@ -2,5 +2,5 @@
 This repository covers the Quarto site creation portion of the Intermediate GitHub for R Users workshop.
 
 ### R Package Template
-You will need your own R package from part 1 OR you can use this template repo for this exercise:
+You will need your own R package from [part 1](https://cascadiarconf-gh-workshops.github.io/intermediate-github-1/) OR you can use this template repo for this exercise:
 https://github.com/cascadiarconf-gh-workshops/intermediate-github-2-pkg-template
