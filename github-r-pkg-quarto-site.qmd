@@ -1,0 +1,174 @@
+---
+title: "Intermediate GitHub for R Users"
+subtitle: "Part 2: Deploy Quarto Sites to GitHub Pages"
+format:
+  revealjs:
+    self-contained: true
+output-file: index.html
+---
+
+## Workshop Goals
+
+In part 1 we:
+
+- Learned how R scripts can be shared directly from GitHub
+- Created a simple R package and installed it from GitHub
+
+In part 2, we will:
+
+- Create a quarto site for our R package
+- Deploy our Quarto site on GitHub pages
+
+## What *Won’t* Be Covered
+
+We are focusing on **Github**, not the intricacies or R code development, git, or other tools.
+
+<br>
+
+We may gloss over important R package details `(debatable)` for the sake of inflating our GitHub contributions instead `(jk)`.
+
+<br>
+
+> **Reminder:** Help each other, pair up, group up as needed.
+
+------------------------------------------------------------------------
+
+## Primary Resources {.smaller}
+
+#### Previously
+
+- [Happy Git With R](https://happygitwithr.com/)
+- [R Packages (2e)](https://r-pkgs.org/)
+- [Rtools for R pkg developers (for windows)](https://cran.r-project.org/bin/windows/Rtools/)
+- Xcode developer tools for R pkg developers (for macOS) –<br>
+`sudo xcode-select --install`
+
+#### Also these now
+
+- [pkgdown + GitHub Pages](https://pkgdown.r-lib.org/articles/pkgdown.html#github-pages)
+- [Quarto website reference](https://quarto.org/docs/reference/projects/websites.html)
+
+# Quarto-based R Package Site
+Using GitHub Pages
+
+## Part 1: Getting `pkgdown` with it
+
+<br> 
+
+### What is `pkgdown` and why use it?
+
+- The R community standard for building R package websites
+- Recent updates allow it to generate the boilerplate for us using Quarto
+- [https://pkgdown.r-lib.org/](https://pkgdown.r-lib.org/)
+
+> PS: It also works great with `{usethis}`
+
+## Install `pkgdown`
+
+<br>
+
+1. Install `{pkgdown}`
+
+```r
+install.packages("pkgdown")
+```
+
+2. Open your R pkg project from part 1<br>or use this [R pkg repo template](https://github.com/cascadiarconf-gh-workshops/intermediate-github-2-pkg-template)
+
+3. Use `{usethis}` to initialize `{pkgdown}` within your R package files
+
+```r
+usethis::use_pkgdown()
+```
+
+## What happened...?
+
+`use_pkgdown()` will add some files to our project. There should be some details in your console output.
+
+<br>
+
+1. `_pkgdown.yml` is your main site configuration file (most important)
+2. `docs/` is where your R pkg site files will go
+3. `.gitignore` and `.rbuildignore` will be updated/created
+
+## What happened...?
+
+You'll see a file called `_pkgdown.yml` open up automatically with some YAML like this:
+
+```yaml
+url: ~
+template:
+  bootstrap: 5
+```
+
+Our `.gitignore` also includes `docs`, which we'll need to remove for now to build our site locally.
+
+## What happened...?
+
+...And who doesn't want a dark mode option for their fellow R travelers?
+
+```yaml
+url: ~
+template:
+  bootstrap: 5
+  light-switch: true
+```
+
+## Building our site
+
+  ```r
+  pkgdown::build_site()
+  ```
+  
+- Live demo: build and view the site locally
+- 📌 Hands-On: Add a README, generate docs, preview site
+
+---
+
+## Part 2: ✖ URLs not ok - Setting Up GitHub Pages
+
+We built our pkgdown site. Woohoo! But wait, that was only local preview... and there was some errors?!
+
+- Ignore the blasphemous errors for now
+- Next, we'll configure your GitHub repository to use the `docs/` folder to build your website
+
+## Configuring your Repository for GitHub Pages {.smaller}
+
+<br>
+
+1. Go to Settings → Pages
+2. Set source to `main` branch, `/docs` folder
+3. In your _pkgdown.yml, update the `url` field to the address GitHub is giving you now
+4. Run `pkgdown::build_site()` one more time for good measure (and update files)
+5. Commit your docs folder and other updates in your git pane and `push` to your GitHub repo
+  
+> PS: It may take a moment for GitHub to generate your initial site url
+
+---
+
+## Part 3: Checking Your Site Deployment
+
+- Let's add our website link to your repo `about` section!
+- Then, use your `about` link to visit your new R package website
+
+---
+
+## Wrap-Up
+
+- `pkgdown` allows us to quickly build an appealing interface for our pkg docs
+- GitHub lets you host a public website for free, built from your repo files
+- You can share that site with others using your GitHub page URL (or a custom URL if you own a domain)
+
+------------------------------------------------------------------------
+
+## Resources
+
+- [Happy Git With R](https://happygitwithr.com/)
+- [R Packages (2e)](https://r-pkgs.org/)
+- [Rtools for R pkg developers (for windows)](https://cran.r-project.org/bin/windows/Rtools/)
+- Xcode developer tools for R pkg developers (for macOS) –<br>
+`sudo xcode-select --install`
+- [pkgdown + GitHub Pages](https://pkgdown.r-lib.org/articles/pkgdown.html#github-pages)
+- [Quarto website reference](https://quarto.org/docs/reference/projects/websites.html)
+
+
